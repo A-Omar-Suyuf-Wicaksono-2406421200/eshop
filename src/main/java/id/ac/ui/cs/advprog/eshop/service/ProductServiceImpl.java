@@ -13,17 +13,17 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService{
 
     @Autowired
-    private ProductRepositry productRepositry;
+    private ProductRepository productRepository;
 
     @Override
     public Product create(Product product){
-        productRepositry.create(product);
+        productRepository.create(product);
         return product;
     }
 
     @Override
     public List<Product> findAll(){
-        Iterator<Product> productIterator = productRepositry.findAll();
+        Iterator<Product> productIterator = productRepository.findAll();
         List<Product> allProduct = new ArrayList<>();
         productIterator.forEachRemaining(allProduct::add);
         return allProduct;
