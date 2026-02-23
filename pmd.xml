@@ -8,4 +8,6 @@
 
     <rule ref="category/java/bestpractices.xml"/>
     <rule ref="category/java/errorprone.xml"/>
+    <rule ref="category/java/codestyle.xml"/>
+    <rule ref="category/java/design.xml"/>
 </ruleset>
