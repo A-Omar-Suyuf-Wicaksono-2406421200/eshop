@@ -1,0 +1,19 @@
+name: PMD
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  pmd:
+    name: Run PMD
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check out the Git repository
+        uses: actions/checkout@v4
+      - name: Run PMD
+        uses: pmd/pmd-github-action@v2
+        with:
+          version: '7.0.0-rc4'
+          sourcePath: 'src/main/java'
+          rulesets: 'pmd.xml'
