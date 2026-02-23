@@ -1,4 +1,26 @@
-Reflection 1
+# MODUL 2
+## Reflection
+1. Dari hasil PMD scan ditemukan beberapa violations di codebase.
+Issue yang saya fix adalah penggunaan modifier `public` yang tidak
+perlu pada method-method di interface `ProductService.java`. Di Java,
+semua method dalam interface sudah implicitly public, jadi penulisan
+`public` secara eksplisit itu redundant dan dianggap bad practice.
+Maka dengan saya menghapus `public` dari semua method
+di interface tersebut, PMD violations berkurang dari 43 menjadi 38.
+
+2. Implementasi yang saya buat sudah memenuhi definisi CI/CD. Untuk
+Continuous Integration, setiap kali ada push atau pull request ke
+repository, GitHub Actions secara otomatis menjalankan unit test
+menggunakan Gradle dan menghasilkan code coverage report lewat Jacoco.
+DAn juga ada workflow PMD yang otomatis berjalan untuk
+menganalisis kualitas kode dan mendeteksi violations setiap kali ada
+perubahan kode. Dengan adanya otomasi testing ini dan code scanning,
+proses integrasi kode menjadi lebih terjamin kualitasnya tanpa harus
+dilakukan secara manual setiap saat.
+
+# MODUL 1
+
+## Reflection 1
 
 Dalam mengimplementasikan fitur edit dan delete product, 
 saya mengalami beberapa tantangan. 
@@ -18,7 +40,7 @@ untuk productId di Model Product. Setelah melengkapi kedua bagian
 yang kurang tersebut, akhirnya fitur edit dan delete berfungsi dengan baik.
 
 
-Reflection 2
+## Reflection 2
 1. Unit Testing dan Code Coverage
 Setelah menulis unit test untuk fitur edit dan delete product, 
 saya rasa unit test membantu memverifikasi bahwa setiap fungsi 
