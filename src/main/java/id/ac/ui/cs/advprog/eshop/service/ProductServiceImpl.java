@@ -43,4 +43,8 @@ public class ProductServiceImpl implements ProductService {
     public void deleteProductById(String productId) {
         productRepository.delete(productId);
     }
+
+    public void delete(String productId) {
+        deleteProductById(productId);
+    }
 }
