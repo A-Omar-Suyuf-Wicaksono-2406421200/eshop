@@ -10,19 +10,19 @@ import java.util.Iterator;
 import java.util.List;
 
 @Service
-public abstract class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository productRepository;
 
     @Override
-    public Product create(Product product){
+    public Product create(Product product) {
         productRepository.create(product);
         return product;
     }
 
     @Override
-    public List<Product> findAll(){
+    public List<Product> findAll() {
         Iterator<Product> productIterator = productRepository.findAll();
         List<Product> allProduct = new ArrayList<>();
         productIterator.forEachRemaining(allProduct::add);
@@ -40,7 +40,7 @@ public abstract class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public void delete(String productId) {
+    public void deleteProductById(String productId) {
         productRepository.delete(productId);
     }
 }
