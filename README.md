@@ -1,11 +1,69 @@
+# Modul 3
+## Reflection
+
+1. Principles yang diimplementasikan
+
+Saya mengimplementasikan principle Single Responsibility Principle (SRP)
+dengan cara memisahkan CarController dari ProductController ke file tersendiri.
+Sebelumnya, CarController berada di dalam file yang sama dengan
+ProductController, sehingga melanggar principles dimana
+satu file memiliki dua tanggung jawab berbeda.
+Sekarang ProductController hanya mengurus endpoint Product dan
+CarController hanya mengurus endpoint Car.
+
+Lalu Dependency Inversion Principle (DIP).
+CarController sebelumnya menginject CarServiceImpl secara langsung.
+Sekarang diubah untuk menginject interface CarService sehingga
+Controller tidak bergantung pada detail implementasi, melainkan pada interface.
+
+Lalu Liskov Substitution Principle (LSP) .
+CarController sebelumnya melakukan extends ProductController, padahal
+CarController bukan subtipe dari ProductController. Keduanya
+adalah controller yang independen dan tidak memiliki hubungan.
+Sudah diperbaiki dengan membuat CarController sebagai class independen.
+
+2. Keuntungan mengimplement SOLID
+
+- Dengan SRP, ketika ada perubahan logika pada fitur Car, saya hanya
+  perlu menyentuh CarController tanpa risiko merusak ProductController.
+  Contoh, menambah endpoint /car/filterCar tidak akan mempengaruhi
+  endpoint Product sama sekali.
+
+- Dengan DIP, jika implementasi CarService diganti (misalnya dari
+  inmemory ke database), CarController tidak perlu diubah sama sekali
+  karena hanya bergantung pada interface CarService.
+
+- Dengan LSP, tidak ada behavior yang tidak terduga akibat inheritance
+  yang salah. CarController tidak mewarisi method-method Product yang
+  tidak relevan.
+
+3. Kerugian tidak implement SOLID
+
+- Tanpa SRP, satu file menangani dua fitur sekaligus. Bug fix pada
+  CarController bisa tidak sengaja merusak ProductController karena berada
+  di file yang sama dan berbagi dependency.
+
+- Tanpa DIP, CarController lebih terikat dengan CarServiceImpl.
+  Jika CarServiceImpl diubah konstruktornya atau method signature-nya,
+  CarController harus ikut diubah juga.
+
+- Tanpa LSP, CarController extends ProductController menyebabkan
+  CarController mewarisi @Autowired private ProductService service yang
+  tidak dibutuhkan, sehingga Spring gagal start karena mencari bean
+  ProductService di context yang tidak sesuai — persis seperti error yang
+  terjadi sebelumnya.
+
+
+
+
 # MODUL 2
 ## Reflection
 1. Dari hasil PMD scan ditemukan beberapa violations di codebase.
-Issue yang saya fix adalah penggunaan modifier `public` yang tidak
-perlu pada method-method di interface `ProductService.java`. Di Java,
+Issue yang saya fix adalah penggunaan modifier public yang tidak
+perlu pada method-method di interface ProductService.java. Di Java,
 semua method dalam interface sudah implicitly public, jadi penulisan
-`public` secara eksplisit itu redundant dan dianggap bad practice.
-Maka dengan saya menghapus `public` dari semua method
+public secara eksplisit itu redundant dan dianggap bad practice.
+Maka dengan saya menghapus public dari semua method
 di interface tersebut, PMD violations berkurang dari 43 menjadi 38.
 
 2. Implementasi yang saya buat sudah memenuhi definisi CI/CD. Untuk
