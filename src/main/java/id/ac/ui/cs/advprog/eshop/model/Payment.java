@@ -17,6 +17,13 @@ public class Payment {
         this.status = determineStatus(method, paymentData);
     }
 
+    public Payment(String id, String method, Map<String, String> paymentData, String status) {
+        this.id = id;
+        this.method = method;
+        this.paymentData = paymentData;
+        this.status = status;
+    }
+
     private String determineStatus(String method, Map<String, String> paymentData) {
         if ("VOUCHER".equals(method)) {
             return validateVoucher(paymentData.get("voucherCode")) ? "SUCCESS" : "REJECTED";

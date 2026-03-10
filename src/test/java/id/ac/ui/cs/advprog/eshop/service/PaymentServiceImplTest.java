@@ -95,7 +95,6 @@ class PaymentServiceImplTest {
         when(paymentRepository.save(any(Payment.class))).thenAnswer(i -> i.getArgument(0));
         Payment payment = paymentService.addPayment(order, "VOUCHER", voucherData);
 
-        when(paymentRepository.findById(payment.getId())).thenReturn(payment);
         Payment result = paymentService.setStatus(payment, "SUCCESS");
 
         assertEquals("SUCCESS", result.getStatus());
@@ -108,7 +107,6 @@ class PaymentServiceImplTest {
         when(paymentRepository.save(any(Payment.class))).thenAnswer(i -> i.getArgument(0));
         Payment payment = paymentService.addPayment(order, "VOUCHER", voucherData);
 
-        when(paymentRepository.findById(payment.getId())).thenReturn(payment);
         Payment result = paymentService.setStatus(payment, "REJECTED");
 
         assertEquals("REJECTED", result.getStatus());
