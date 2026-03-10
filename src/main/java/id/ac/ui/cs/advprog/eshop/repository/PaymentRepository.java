@@ -10,7 +10,26 @@ import java.util.List;
 public class PaymentRepository {
     private List<Payment> paymentData = new ArrayList<>();
 
-    public Payment save(Payment payment) { return null; }
-    public Payment findById(String id) { return null; }
-    public List<Payment> findAll() { return new ArrayList<>(); }
+    public Payment save(Payment payment) {
+        for (int i = 0; i < paymentData.size(); i++) {
+            if (paymentData.get(i).getId().equals(payment.getId())) {
+                paymentData.remove(i);
+                paymentData.add(i, payment);
+                return payment;
+            }
+        }
+        paymentData.add(payment);
+        return payment;
+    }
+
+    public Payment findById(String id) {
+        for (Payment p : paymentData) {
+            if (p.getId().equals(id)) return p;
+        }
+        return null;
+    }
+
+    public List<Payment> findAll() {
+        return new ArrayList<>(paymentData);
+    }
 }
