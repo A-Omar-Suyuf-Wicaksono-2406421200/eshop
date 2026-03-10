@@ -1,3 +1,25 @@
+# Modul 4
+## Reflection
+
+1. Cukup berguna, dengan nulis test duluan, saya dipaksa mikirin
+behavior yang diharapkan sebelum implementasi. Contohnya waktu
+Order model, saya sudah tahu empty products harus throw exception
+sebelum nulis satu baris di Order.java.
+
+Yang perlu diperbaiki : saya sempat nulis stub yang tidak diperlukan
+karena terlalu mikirin implementasi, bukan behavior. Ke depannya
+lebih fokus ke apa yang sistem harus lakukan, bukan bagaimana caranya.
+
+2. Fast dan Repeatable sudah, semua pakai Mockito jadi tidak ada
+database call atau dependency luar. Isolated sebagian besar sudah, tapi ada beberapa test di
+PaymentServiceImplTest yang memanggil addPayment di dalam testSetStatus,
+jadi ada sedikit ketergantungan antar logika yang harusnya dihindari. 
+Self-validating sudah, semua pakai assertEquals dan assertThrows. 
+
+Timely perlu diperbaiki. Sempat ada momen di mana skeleton implementasi
+dibuat sejajar dengan test, bukan setelah. Ke depannya test harus
+benar-benar mendahului implementasi.
+
 # Modul 3
 ## Reflection
 
